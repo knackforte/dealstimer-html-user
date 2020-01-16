@@ -1,0 +1,14 @@
+.signInLink {
+  padding: 0 20px;
+  color: #ffffff;
+}
+.signInLink:hover {
+  text-decoration: none;
+  color: #f3f3f3;
+}
+.logo {
+  width: 200px;
+}
+.signUpLink {
+  color: #ffffff;
+}
