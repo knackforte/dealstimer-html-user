@@ -88,67 +88,10 @@ const SignUpContainer = (props) => {
     </Container>;
 }
 class Signup extends Component {
-    state = {
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-        errors: {},
-        isButtonDisabled: false
-    }
-    handleInputChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const data = this.state;
-        const rules = {
-            name: 'required|string',
-            email: 'required|email',
-            password: 'required|string|min:8|confirmed',
-            password_confirmation: 'required|string|min:8'
-        };
-
-        const messages = {
-            required: 'Make sure to enter the value',
-            email: 'Please Enter valid email address',
-            min: 'The value must be greater than eight characters.'
-        }
-
-        validateAll(data, rules, messages).then(() => {
-            this.setState({ isButtonDisabled: true });
-            let config = {
-                headers: {
-                    APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa'
-                }
-            }
-            axios.post('http://clientdemo.knackforte.com/apidealstimer/api/user', {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password,
-                password_confirmation: this.state.password_confirmation
-            }, config).then(response => {
-                localStorage.setItem('isAuth', true);
-                window.location.href = "/Dashboard";
-                //this.props.history.push('/Dashboard');
-            }).catch(e => {
-                alert("Error while Signing up!");
-                this.setState({ isButtonDisabled: false });
-            })
-        }).catch((errors) => {
-            const formattedErrors = {}
-            errors.forEach(error => formattedErrors[error.field] = error.message)
-            this.setState({ errors: formattedErrors })
-        })
-    }
     render() {
-        return (<SignUpContainer
-            changed={this.handleInputChange}
-            submitted={this.handleSubmit}
-            errors={this.state.errors}
-            btnDisabled={this.state.isButtonDisabled} />);
+        return (
+            <SignUpContainer />
+        );
     }
 }
 export default Signup;

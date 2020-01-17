@@ -54,11 +54,11 @@ const SignUpContainer = (props) => {
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <TextField
-                            autoComplete="fname"
+                            autoComplete="first_name"
                             name="first_name"
                             variant="outlined"
                             fullWidth
-                            id="fullName"
+                            id="first_name"
                             label="First Name(Required)"
                             autoFocus
                             onChange={props.changed}
@@ -67,11 +67,11 @@ const SignUpContainer = (props) => {
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            autoComplete="fname"
+                            autoComplete="last_name"
                             name="last_name"
                             variant="outlined"
                             fullWidth
-                            id="fullName"
+                            id="last_name"
                             label="Last Name(Required)"
                             onChange={props.changed}
                             helperText={props.errors.last_name ? props.errors.last_name : ""}
@@ -188,7 +188,7 @@ const SignUpContainer = (props) => {
                         <TextField
                             variant="outlined"
                             fullWidth
-                            id="address"
+                            id="store_name"
                             label="Store Name(Required)"
                             name="store_name"
                             type="text"
@@ -379,7 +379,7 @@ class VendorSignup extends Component {
                     cell_no: this.state.cell_no,
                     address: this.state.address,
                     gender: this.state.gender,
-                    store_name: this.store_name,
+                    store_name: this.state.store_name,
                     store_url: this.state.store_url,
                     country: this.state.country,
                     city: this.state.city,
