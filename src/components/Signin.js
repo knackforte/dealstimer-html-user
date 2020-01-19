@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { validateAll } from 'indicative/validator';
 import axios from 'axios';
+import { isLogin } from './utils';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -104,6 +105,14 @@ const SignInContainer = (props) => {
 }
 
 class Signin extends Component {
+    constructor (props) {
+        super(props);
+        if (isLogin() === "false") {
+            this.props.history.push('/');
+        } else {
+            this.props.history.push('/dashboard');
+        }
+    }
     state = {
         email: "",
         password: "",
@@ -114,11 +123,7 @@ class Signin extends Component {
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
-    // componentDidMount() {
-    //     if (localStorage.getItem('isAuth') == true) {
-    //         this.props.history.push('/Dashboard');
-    //     }
-    // }
+
     handleSubmit = (event) => {
         event.preventDefault();
         const data = this.state;
@@ -144,14 +149,13 @@ class Signin extends Component {
                         APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa',
                     }
                 }
-                axios.post('http://clientdemo.knackforte.com/apidealstimer/public/api/verifyUser', {
+                axios.post('http://127.0.0.1:8000/api/verifyUser', {
                     email: this.state.email,
                     password: this.state.password,
                 }, config)
                     .then(response => {
                         localStorage.setItem('isAuth', true);
-                        window.location.href = '/Dashboard';
-                        //this.props.history.push('/Dashboard');
+                        this.props.history.push('dashboard');
                     })
                     .catch(e => {
                         alert("Invalid email or password");

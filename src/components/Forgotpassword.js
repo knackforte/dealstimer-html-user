@@ -9,6 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { isLogin } from './utils';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -79,6 +80,14 @@ const ForgotPasswordContainer = () => {
         ;
 }
 class Forgotpassword extends Component {
+    constructor (props) {
+        super(props);
+        if (isLogin() === "true") {
+            this.props.history.push('/dashboard');
+        } else {
+            this.props.history.push('/forgotpassword');
+        }
+    }
     render() {
         return (
             <ForgotPasswordContainer />

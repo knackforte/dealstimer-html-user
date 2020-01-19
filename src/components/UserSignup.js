@@ -47,7 +47,7 @@ const SignUpContainer = (props) => {
                             name="first_name"
                             variant="outlined"
                             fullWidth
-                            id="fullName"
+                            id="first_name"
                             label="First Name(Required)"
                             autoFocus
                             onChange={props.changed}
@@ -60,11 +60,11 @@ const SignUpContainer = (props) => {
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            autoComplete="fname"
+                            autoComplete="lname"
                             name="last_name"
                             variant="outlined"
                             fullWidth
-                            id="fullName"
+                            id="last_name"
                             label="Last Name(Required)"
                             onChange={props.changed}
                             helperText={props.errors.last_name
@@ -74,7 +74,23 @@ const SignUpContainer = (props) => {
                                 ? true
                                 : false} />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
+                        <TextField
+                            variant="outlined"
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            type="text"
+                            onChange={props.changed}
+                            helperText={props.errors.username
+                                ? props.errors.username
+                                : ""}
+                            error={props.errors.username
+                                ? true
+                                : false} />
+                    </Grid>
+                    <Grid item xs={6}>
                         <TextField
                             variant="outlined"
                             fullWidth
@@ -91,7 +107,7 @@ const SignUpContainer = (props) => {
                                 ? true
                                 : false} />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <TextField
                             variant="outlined"
                             fullWidth
@@ -108,7 +124,7 @@ const SignUpContainer = (props) => {
                                 ? true
                                 : false} />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <TextField
                             variant="outlined"
                             fullWidth
@@ -131,6 +147,7 @@ const SignUpContainer = (props) => {
                             label="I agree to the Terms and Conditions." />
                     </Grid>
                 </Grid>
+
                 <Grid item xs={12} className={classes.submitButtonGrid}>
                     <Button
                         type="submit"
@@ -157,6 +174,7 @@ class UserSignup extends Component {
     state = {
         first_name: "",
         last_name: "",
+        username: "",
         email: "",
         password: "",
         password_confirmation: "",
@@ -174,6 +192,7 @@ class UserSignup extends Component {
         const rules = {
             first_name: 'required|string',
             last_name: 'required|string',
+            username: 'required|string',
             email: 'required|email',
             password: 'required|string|min:8|confirmed',
             password_confirmation: 'required|string|min:8'
@@ -192,20 +211,22 @@ class UserSignup extends Component {
                     APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa'
                 }
             }
-            console.log(this.state);
-            axios.post('http://clientdemo.knackforte.com/apidealstimer/public/api/user', {
+            axios.post('http://127.0.0.1:8000/api/user', {
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
+                username: this.state.username,
                 email: this.state.email,
                 password: this.state.password,
                 password_confirmation: this.state.password_confirmation,
                 role: "user"
             }, config).then(response => {
+                //console.log(response);
+                //window.location.href = "/dashboard";
                 localStorage.setItem('isAuth', true);
-                window.location.href = "/Dashboard";
-                //this.props.history.push('/Dashboard');
+                this.props.history.push('/dashboard');
             }).catch(e => {
-                alert("Error while Signing up!");
+                alert(e.response.data);
+                //console.log(e.response);
                 this.setState({ isButtonDisabled: false });
             })
         }).catch((errors) => {

@@ -368,7 +368,7 @@ class VendorSignup extends Component {
                         APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa',
                     }
                 }
-                axios.post('http://clientdemo.knackforte.com/apidealstimer/public/api/user', {
+                axios.post('http://127.0.0.1:8000/api/user', {
                     name: this.state.name,
                     email: this.state.email,
                     password: this.state.password,
@@ -392,11 +392,11 @@ class VendorSignup extends Component {
                 }, config)
                     .then(response => {
                         localStorage.setItem('isAuth', true);
-                        window.location.href = "/Dashboard";
+                        this.props.history.push('/dashboard');
                         //this.props.history.push('/Dashboard');
                     })
                     .catch(e => {
-                        alert("Error while Signing up!");
+                        alert(e.response.data);
                         this.setState({
                             isButtonDisabled: false
                         });

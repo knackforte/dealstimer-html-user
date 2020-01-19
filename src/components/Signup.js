@@ -4,15 +4,14 @@ import Storefront from '@material-ui/icons/Storefront';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { validateAll } from 'indicative/validator';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
-import axios from 'axios';
 import Box from '@material-ui/core/Box';
 import VendorSignup from './VendorSignup';
 import UserSignup from './UserSignup';
+import { isLogin } from './utils';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -79,18 +78,26 @@ const SignUpContainer = (props) => {
                 <Tab icon={< PersonPinIcon />} label="User signup" />
             </Tabs>
             <TabPanel value={value} index={0}>
-                <VendorSignup />
+                <VendorSignup {...props} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <UserSignup />
+                <UserSignup {...props} />
             </TabPanel>
         </Paper>
     </Container>;
 }
 class Signup extends Component {
+    constructor (props) {
+        super(props);
+        if (isLogin() === "false") {
+            this.props.history.push('/signup');
+        } else {
+            this.props.history.push('/dashboard');
+        }
+    }
     render() {
         return (
-            <SignUpContainer />
+            <SignUpContainer {...this.props} />
         );
     }
 }

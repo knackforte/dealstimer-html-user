@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import '../assets/css/nav.css';
 import Logo from '../assets/images/dealstimer.png';
 
 
-export default function Navigation() {
+const Navigation = (props) => {
     const handleLogout = () => {
         localStorage.setItem('isAuth', false);
-        window.location.href = '/';
+        props.history.push('/');
     }
 
     const guestLinks = (
@@ -16,7 +16,7 @@ export default function Navigation() {
                 <Link to="/" className="signInLink">
                     {"Sign In"}
                 </Link>
-                <Link to="/Signup" className="signUpLink">
+                <Link to="/signup" className="signUpLink">
                     <button className="btn btn-outline-primary my-2 my-sm-0">Create an Account</button>
                 </Link>
             </form>
@@ -24,11 +24,9 @@ export default function Navigation() {
     );
     const authLinks = (
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <form className="form-inline my-2 my-lg-0 ml-auto">
-                <Link to="/Signout" className="signOutLink">
-                    <button className="btn btn-outline-primary my-2 my-sm-0" onClick={handleLogout}>Sign Out</button>
-                </Link>
-            </form>
+            <div className="form-inline my-2 my-lg-0 ml-auto">
+                <button className="btn btn-outline-primary my-2 my-sm-0" onClick={handleLogout}>Sign Out</button>
+            </div>
         </div>
     );
     let navigation;
@@ -51,3 +49,5 @@ export default function Navigation() {
         </nav>
     );
 }
+
+export default withRouter(Navigation);
