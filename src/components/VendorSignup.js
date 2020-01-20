@@ -341,6 +341,7 @@ class VendorSignup extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const data = this.state;
+        console.log(data);
         const rules = {
             first_name: 'required|string',
             last_name: 'required|string',
@@ -366,30 +367,30 @@ class VendorSignup extends Component {
                 let config = {
                     headers: {
                         APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa',
+                        'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
                     }
                 }
-                axios.post('http://127.0.0.1:8000/api/user', {
-                    name: this.state.name,
-                    email: this.state.email,
-                    password: this.state.password,
-                    password_confirmation: this.state.password_confirmation,
-                    first_name: this.state.first_name,
-                    last_name: this.state.last_name,
-                    username: this.state.username,
-                    cell_no: this.state.cell_no,
-                    address: this.state.address,
-                    gender: this.state.gender,
-                    store_name: this.state.store_name,
-                    store_url: this.state.store_url,
-                    country: this.state.country,
-                    city: this.state.city,
-                    zip: this.state.zip,
-                    longitude: this.state.longitude,
-                    latitude: this.state.latitude,
-                    street_address: this.state.street_address,
-                    picture: this.state.picture,
-                    role: "vendor"
-                }, config)
+                let formData = new FormData();
+                formData.append('email', this.state.email);
+                formData.append('password', this.state.password);
+                formData.append('password_confirmation', this.state.password_confirmation);
+                formData.append('first_name', this.state.first_name);
+                formData.append('last_name', this.state.last_name);
+                formData.append('username', this.state.username);
+                formData.append('cell_no', this.state.cell_no);
+                formData.append('address', this.state.address);
+                formData.append('gender', this.state.gender);
+                formData.append('store_name', this.state.store_name);
+                formData.append('store_url', this.state.store_url);
+                formData.append('country', this.state.country);
+                formData.append('city', this.state.city);
+                formData.append('zip', this.state.zip);
+                formData.append('longitude', this.state.longitude);
+                formData.append('latitude', this.state.latitude);
+                formData.append('street_address', this.state.street_address);
+                formData.append('picture', this.state.picture[0]);
+                formData.append('role', "vendor");
+                axios.post('http://127.0.0.1:8000/api/user', formData, config)
                     .then(response => {
                         localStorage.setItem('isAuth', true);
                         this.props.history.push('/dashboard');
