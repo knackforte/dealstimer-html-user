@@ -341,7 +341,6 @@ class VendorSignup extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const data = this.state;
-        console.log(data);
         const rules = {
             first_name: 'required|string',
             last_name: 'required|string',
