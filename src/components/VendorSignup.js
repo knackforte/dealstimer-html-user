@@ -8,7 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { validateAll } from 'indicative/validator';
-import { DropzoneArea } from 'material-ui-dropzone'
+import { DropzoneArea } from 'material-ui-dropzone';
+import { ADD_USER_API_URL } from './common/Constants';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -389,7 +390,7 @@ class VendorSignup extends Component {
                 formData.append('street_address', this.state.street_address);
                 formData.append('picture', this.state.picture[0]);
                 formData.append('role', "vendor");
-                axios.post('http://127.0.0.1:8000/api/user', formData, config)
+                axios.post(ADD_USER_API_URL, formData, config)
                     .then(response => {
                         localStorage.setItem('isAuth', true);
                         this.props.history.push('/dashboard');

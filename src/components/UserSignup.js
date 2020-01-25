@@ -7,6 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { validateAll } from 'indicative/validator';
+import { ADD_USER_API_URL } from './common/Constants';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -211,7 +212,7 @@ class UserSignup extends Component {
                     APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa'
                 }
             }
-            axios.post('http://127.0.0.1:8000/api/user', {
+            axios.post(ADD_USER_API_URL, {
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
                 username: this.state.username,

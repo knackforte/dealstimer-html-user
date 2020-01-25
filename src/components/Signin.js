@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { validateAll } from 'indicative/validator';
+import { LOGIN_API_URL } from './common/Constants';
+
 import axios from 'axios';
 import { isLogin } from './utils';
 
@@ -149,7 +151,7 @@ class Signin extends Component {
                         APP_KEY: '$2y$10$bmMnWMBdvUmNWDSu9DwhH0sT.Yx4syv81fz3WDPRBO3pMSj8CthVRQGa',
                     }
                 }
-                axios.post('http://127.0.0.1:8000/api/verifyUser', {
+                axios.post(LOGIN_API_URL, {
                     email: this.state.email,
                     password: this.state.password,
                 }, config)
