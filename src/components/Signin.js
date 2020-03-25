@@ -157,10 +157,11 @@ class Signin extends Component {
                 }, config)
                     .then(response => {
                         localStorage.setItem('isAuth', true);
-                        this.props.history.push('dashboard');
+                        this.props.history.push('/dashboard');
                     })
                     .catch(e => {
                         alert("Invalid email or password");
+
 
                         this.setState({
                             isButtonDisabled: false

@@ -17,9 +17,9 @@ const routing = <Router>
 
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
-            <Route path="/" component={Homepage} />
+            <Route exact path="/" component={Homepage} />
             <Route path="/forgotpassword" component={Forgotpassword} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/" component={Dashboard} />
 
         </Switch >
     </div >

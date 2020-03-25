@@ -25,9 +25,15 @@ const Navigation = (props) => {
         </div>
     );
     const authLinks = (
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="form-inline my-2 my-lg-0 ml-auto">
-                <button className="btn btn-outline-primary my-2 my-sm-0" onClick={handleLogout}>Sign Out</button>
+
+        <div className="dt-container" id="navbarSupportedContent">
+            <div className=" top-header top-height-ot">
+                <ul className="list list-inline list-unstyled float-right m-0 text-right">
+                    <li className="list-inline-item">
+                        <Link onClick={handleLogout}>Logout</Link>
+
+                    </li>
+                </ul>
             </div>
         </div>
     );
