@@ -107,10 +107,10 @@ const SignInContainer = (props) => {
 }
 
 class Signin extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         if (isLogin() === "false") {
-            this.props.history.push('/');
+            this.props.history.push('/signin');
         } else {
             this.props.history.push('/dashboard');
         }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import '../assets/css/nav.css';
+import Dealstimer from '../assets/images/dealstimer-logo.png';
 import Logo from '../assets/images/dealstimer.png';
 
 
@@ -11,15 +12,16 @@ const Navigation = (props) => {
     }
 
     const guestLinks = (
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <form className="form-inline my-2 my-lg-0 ml-auto">
-                <Link to="/" className="signInLink">
-                    {"Sign In"}
-                </Link>
-                <Link to="/signup" className="signUpLink">
-                    <button className="btn btn-outline-primary my-2 my-sm-0">Create an Account</button>
-                </Link>
-            </form>
+        <div className="dt-container" id="navbarSupportedContent">
+            <div className=" top-header top-height-ot">
+                <ul className="list list-inline list-unstyled float-right m-0 text-right">
+                    <li className="list-inline-item">
+                        <Link to="/signin">Login</Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+                        <Link to="/signup">Sign Up</Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+                        <Link to="#">عربی</Link>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
     const authLinks = (
@@ -37,13 +39,16 @@ const Navigation = (props) => {
         navigation = guestLinks;
     }
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <Link to="/">
-                <img className="logo" src={Logo} alt="Logo" />
-            </Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+        <nav className="navbar navbar-expand-lg ">
+            <div className="dt-container">
+                <div className="row top-height-oi">
+                    <div className="col-sm-6 col-6 align-self-center brand logo">
+                        <img alt="" src={Dealstimer} className="logo-md logo-op" />
+                    </div>
+
+                </div>
+            </div>
+
             {navigation}
 
         </nav>

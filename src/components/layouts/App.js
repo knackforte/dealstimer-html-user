@@ -5,6 +5,7 @@ import Signup from '../Signup';
 import Forgotpassword from '../Forgotpassword';
 import Navigation from '../Navigation';
 import Dashboard from '../Dashboard';
+import Homepage from '../Homepage';
 import { isLogin } from '../utils';
 class App extends React.Component {
   render() {
